@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Adds space between the fields */
+  padding: 150px;
+  /* background-color: blue; */
+}
+
+/* Make the form field wider */
+.large-field {
+    /* background-color: aqua; */
+  width: 100%;
+  max-width: 1150px; /* Adjust this to your preferred size */
+}
+
+/* Make the font size larger inside the field */
+::ng-deep .large-field .mat-mdc-text-field-wrapper {
+  font-size: 1.2rem; 
+}

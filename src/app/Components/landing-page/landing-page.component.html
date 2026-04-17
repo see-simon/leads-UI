@@ -1,0 +1,6 @@
+<div class="grid">
+  <div class="card" *ngFor="let item of items" (click)="goToDetails(item)">
+    <img [src]="item.image" />
+    <h3>{{ item.title }}</h3>
+  </div>
+</div>

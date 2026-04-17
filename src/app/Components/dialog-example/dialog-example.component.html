@@ -1,0 +1,24 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill" class="large-field">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" placeholder="Enter name">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="large-field">
+    <mat-label> Surname</mat-label>
+    <input matInput formControlName="surname" placeholder="Enter surname">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="large-field">
+    <mat-label> Phone Number</mat-label>
+    <input matInput formControlName="phoneNumber" placeholder="Enter phone number">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="large-field">
+    <mat-label>Email Address</mat-label>
+    <input matInput formControlName="email" placeholder="email@example.com">
+  </mat-form-field>
+
+  <button mat-raised-button type="submit" [disabled]="!userForm.valid">Submit</button>
+</form>
+
