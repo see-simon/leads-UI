@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogExampleComponent } from '../dialog-example/dialog-example.component';
 
 @Component({
@@ -12,24 +12,37 @@ export class DetailsPageComponent {
 
   constructor(private route: ActivatedRoute, private router: Router, public dialog: MatDialog) { }
 
-  item: any;
+  fileUrl: string = '';
+  fileName: string = '';
 
-  ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
+ngOnInit() {
+  const data = history.state;
+  // console.log("Received data in details page title:", data.title);
 
-    // You can later fetch from backend
-    this.item = {
-      id,
-      title: 'Ad ' + id,
-      image: 'assets/' + id + '.jpg'
-    };
+
+  // Check if data and file property exist to avoid 'assets/files/undefined'
+  if (data && data.file) {
+    this.fileUrl = 'assets/files/' + data.file;
+    // console.log("Loading file:", this.fileUrl);
+    // console.log("file name is : ", data.file);
+
+    this.fileName = data.file; // Store the file name for display
+  } else {
+    console.error("No file data found in history.state");
+    // Optional: Redirect back to landing if no data is present
+    // this.router.navigate(['/landing-page']);
   }
+}
 
-  openDialog(){
-    this.dialog.open( DialogExampleComponent);
+  openDialog() {
+    const data = history.state;
+    console.log("Opening dialog with data:", data.title);
+    this.dialog.open(DialogExampleComponent, {
+      data: data
+    });
   }
 
   goToForm() {
-    this.router.navigate(['/form-page']);
+    this.router.navigate(['/dialog-example']);
   }
 }

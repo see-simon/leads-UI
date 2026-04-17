@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LeadsService } from '../services/leads.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-example',
@@ -10,15 +11,17 @@ import { LeadsService } from '../services/leads.service';
 export class DialogExampleComponent {
   userForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private leadsService: LeadsService) {
-    // Define your fields here
+  constructor(private fb: FormBuilder, private leadsService: LeadsService, private dialogRef: MatDialogRef<DialogExampleComponent>,
+    @Inject(MAT_DIALOG_DATA) public stateData: any 
+  ) {
+
     this.userForm = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', Validators.required],
-      // Add default description
-      description: ['Interested in your services', Validators.required]
+      
+     description: [`${this.stateData.title}`, Validators.required]
     });
   }
 
@@ -30,7 +33,7 @@ export class DialogExampleComponent {
       }, error => {
         console.error('Error adding lead', error);
       });
-      // Send this.userForm.value to your PostgreSQL backend via a service
+     
     }
   }
 }
