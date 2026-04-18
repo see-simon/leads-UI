@@ -6,7 +6,7 @@
 
   <mat-form-field appearance="fill" class="large-field">
     <mat-label>Name</mat-label>
-    <input matInput formControlName="name" (keypress)="onlyText($event)">
+    <input matInput formControlName="name" maxlength="30" (keypress)="onlyText($event)">
     <mat-error *ngIf="userForm.get('name')?.hasError('required')">
       Name is required
     </mat-error>
@@ -18,7 +18,7 @@
 
   <mat-form-field appearance="fill" class="large-field">
     <mat-label>Surname</mat-label>
-    <input matInput formControlName="surname" (keypress)="onlyText($event)">
+    <input matInput formControlName="surname" maxlength="30" (keypress)="onlyText($event)">
     <mat-error *ngIf="userForm.get('name')?.hasError('required')">
       Name is required
     </mat-error>
