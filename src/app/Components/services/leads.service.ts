@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LeadsService {
-  private baseUrl = 'http://localhost:8080/api/leads';
+  private baseUrl = 'https://leads-backend-5ebl.onrender.com/api/leads';
 
   constructor( private http: HttpClient ) { }
 
