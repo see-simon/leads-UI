@@ -1,19 +1,51 @@
+/* DIALOG CONTAINER */
 :host {
+  display: block;
+  padding: 30px;
+  background: linear-gradient(to bottom, #f4f8fb, #ffffff);
+  border-radius: 12px;
+}
+
+/* FORM */
+form {
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Adds space between the fields */
-  padding: 150px;
-  /* background-color: blue; */
+  gap: 20px;
+  width: 400px;
+  max-width: 100%;
 }
 
-/* Make the form field wider */
+/* INPUT FIELDS */
 .large-field {
-    /* background-color: aqua; */
   width: 100%;
-  max-width: 1150px; /* Adjust this to your preferred size */
 }
 
-/* Make the font size larger inside the field */
-::ng-deep .large-field .mat-mdc-text-field-wrapper {
-  font-size: 1.2rem; 
+/* MATERIAL FIELD STYLE */
+::ng-deep .mat-mdc-text-field-wrapper {
+  border-radius: 10px !important;
+}
+
+/* BUTTON */
+button {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #007bff;
+  color: white;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #0056b3;
+  transform: scale(1.03);
+}
+
+/* OPTIONAL TITLE */
+.dialog-title {
+  color: #0056b3;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: center;
 }

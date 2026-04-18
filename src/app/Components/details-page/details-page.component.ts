@@ -17,20 +17,12 @@ export class DetailsPageComponent {
 
 ngOnInit() {
   const data = history.state;
-  // console.log("Received data in details page title:", data.title);
 
-
-  // Check if data and file property exist to avoid 'assets/files/undefined'
   if (data && data.file) {
     this.fileUrl = 'assets/files/' + data.file;
-    // console.log("Loading file:", this.fileUrl);
-    // console.log("file name is : ", data.file);
-
-    this.fileName = data.file; // Store the file name for display
+    this.fileName = data.title; 
   } else {
     console.error("No file data found in history.state");
-    // Optional: Redirect back to landing if no data is present
-    // this.router.navigate(['/landing-page']);
   }
 }
 

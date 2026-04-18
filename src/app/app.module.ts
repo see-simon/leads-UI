@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './Components/landing-page/landing-page.component';
 import { DetailsPageComponent } from './Components/details-page/details-page.component';
-import { FormPageComponent } from './Components/form-page/form-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -22,7 +21,6 @@ import { SafeUrlPipe } from './Components/pipes/safe-url.pipe';
     AppComponent,
     LandingPageComponent,
     DetailsPageComponent,
-    FormPageComponent,
     DialogExampleComponent,
     SafeUrlPipe
   ],

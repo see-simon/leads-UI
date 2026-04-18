@@ -1,15 +1,26 @@
-<div class="card" *ngIf="fileUrl">
-  <iframe 
-    [src]="fileUrl | safeUrl"
-    width="100%" 
-    height="400px">
-  </iframe>
-</div>
+<div class="container">
 
-<div *ngIf="!fileUrl">
-  <p>Loading document...</p>
-</div>
- 
-<div class="actions">
-  <button (click)="openDialog()">Get in touch with consultant</button>
+  <!-- HEADER -->
+  <div class="header">
+    <h2>{{ fileName }}</h2>
+  </div>
+
+  <!-- PDF CARD -->
+  <div class="card" *ngIf="fileUrl">
+    <iframe 
+      [src]="fileUrl | safeUrl"
+      width="100%" 
+      height="500px">
+    </iframe>
+  </div>
+
+  <div *ngIf="!fileUrl">
+    <p>Loading document...</p>
+  </div>
+
+  <!-- BUTTON -->
+  <div class="actions">
+    <button (click)="openDialog()">Get in touch with consultant</button>
+  </div>
+
 </div>

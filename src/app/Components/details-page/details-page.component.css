@@ -1,25 +1,50 @@
-.card {
-  width: 80%;
-  margin: auto;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+/* PAGE BACKGROUND */
+.container {
+  background: linear-gradient(to bottom, #f4f8fb, #ffffff);
+  min-height: 100vh;
+  padding-top: 60px; /* pushes everything down */
 }
 
+/* HEADER (top-left) */
+.header {
+  width: 80%;
+  margin: 0 auto 20px auto;
+}
+
+.header h2 {
+  color: #0056b3; /* Sanlam blue */
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* CARD */
+.card {
+  width: 80%;
+  margin: 0 auto;
+  padding: 15px;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* BUTTON */
 .actions {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 button {
-  padding: 12px 20px;
+  padding: 12px 25px;
   border: none;
+  border-radius: 8px;
   background: #007bff;
   color: white;
-  border-radius: 8px;
+  font-size: 15px;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 button:hover {
   background: #0056b3;
+  transform: scale(1.05);
 }
