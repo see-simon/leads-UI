@@ -10,11 +10,18 @@ export class LandingPageComponent {
 
   items = [
     { id: 1, title: 'Estate Planning', file: 'Estate-Planning.pdf', image: 'assets/images/estateplanning.jpg' },
-    { id: 2, title: 'Financial-Planning_Digital', file: 'Financial-Planning_Digital.pdf', image: 'assets/images/Financial-Planning_Digital.jpg' },
-    { id: 3, title: 'Sanlam-Cashback-benefit', file: 'Sanlam-Cashback-benefit-1080x1080.pdf', image: 'assets/images/Cashback-benefit.jpg' },
-    { id: 4, title: 'Sanlam-Gap-Cover_Eng', file: 'Sanlam-Gap-Cover_Eng.pdf', image: 'assets/images/sanlam-gap-cover.jpg' },
-    { id: 5, title: 'Sanlam-s-Enhanced-Income-Protector', file: 'Sanlam-s-Enhanced-Income-Protector.pdf', image: 'assets/images/sanlam-enhanced-income-protector.jpg' },
-    { id: 6, title: 'Sanlam-s-Life-Cover', file: 'Sanlam-s-Life-Cover-1080x1080.pdf', image: 'assets/images/sanlam-life-cover.jpg' },
+
+    { id: 2, title: 'Financial Planning Digital', file: 'Financial-Planning_Digital.pdf', image: 'assets/images/Financial-Planning_Digital.jpg' },
+
+    { id: 3, title: 'Sanlam Cashback benefit', file: 'Sanlam-Cashback-benefit-1080x1080.pdf', image: 'assets/images/Cashback-benefit.jpg' },
+
+    { id: 4, title: 'Sanlam Gap Cover', file: 'Sanlam-Gap-Cover_Eng.pdf', image: 'assets/images/gap cover.jpg' },
+
+    { id: 5, title: 'Sanlam s Enhanced Income Protector', file: 'Sanlam-s-Enhanced-Income-Protector.pdf', image: 'assets/images/income protactor.jpg' },
+
+    { id: 6, title: 'Sanlam s Life Cover', file: 'Sanlam-s-Life-Cover-1080x1080.pdf', image: 'assets/images/s cover.jpg' },
+
+    { id: 7, title: 'Sanlam Wills Month 2025-Eng-Digital' , file : 'Sanlam-Wills-Month-2025-Eng-Digital.pdf', image: 'assets/images/will.jpg'}
 
   ];
 

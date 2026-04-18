@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LeadsService } from '../services/leads.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dialog-example',
@@ -12,7 +13,7 @@ export class DialogExampleComponent {
   userForm: FormGroup;
 
   constructor(private fb: FormBuilder, private leadsService: LeadsService, private dialogRef: MatDialogRef<DialogExampleComponent>,
-    @Inject(MAT_DIALOG_DATA) public stateData: any 
+    @Inject(MAT_DIALOG_DATA) public stateData: any ,   private router: Router, // ✅ ADD THIS
   ) {
 
     this.userForm = this.fb.group({
@@ -25,15 +26,23 @@ export class DialogExampleComponent {
     });
   }
 
-  onSubmit() {
-    if (this.userForm.valid) {
-      console.log('Form Submitted:', this.userForm.value);
-      this.leadsService.addLeads(this.userForm.value).subscribe(response => {
-        console.log('Lead added successfully', response);
-      }, error => {
-        console.error('Error adding lead', error);
-      });
-     
-    }
+
+onSubmit() {
+  if (this.userForm.valid) {
+
+    this.leadsService.addLeads(this.userForm.value).subscribe(response => {
+      console.log('Lead added successfully', response);
+
+      // ✅ Close dialog first
+      this.dialogRef.close();
+      alert('Thank you! A consultant will contact you shortly.');
+      // ✅ Then navigate to landing page
+      this.router.navigate(['/landing-page']);
+
+    }, error => {
+      console.error('Error adding lead', error);
+    });
+
   }
+}
 }

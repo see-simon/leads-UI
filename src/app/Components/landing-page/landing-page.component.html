@@ -1,6 +1,20 @@
-<div class="grid">
-  <div class="card" *ngFor="let item of items" (click)="goToDetails(item)">
-    <img [src]="item.image" />
-    <h3>{{ item.title }}</h3>
+<div class="container">
+
+  <!-- WELCOME SECTION -->
+  <div class="welcome">
+    <h1>Welcome to Our Financial Solutions</h1>
+    <p>
+      Explore our range of services designed to help you secure your future.
+      Click on any option below to learn more and get in touch with a consultant.
+    </p>
   </div>
+
+  <!-- GRID -->
+  <div class="grid">
+    <div class="card" *ngFor="let item of items" (click)="goToDetails(item)">
+      <img [src]="item.image" />
+      <h3>{{ item.title }}</h3>
+    </div>
+  </div>
+
 </div>
