@@ -6,22 +6,43 @@
 
   <mat-form-field appearance="fill" class="large-field">
     <mat-label>Name</mat-label>
-    <input matInput formControlName="name">
+    <input matInput formControlName="name" (keypress)="onlyText($event)">
+    <mat-error *ngIf="userForm.get('name')?.hasError('required')">
+      Name is required
+    </mat-error>
+
+    <mat-error *ngIf="userForm.get('name')?.hasError('pattern')">
+      Only letters allowed
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill" class="large-field">
     <mat-label>Surname</mat-label>
-    <input matInput formControlName="surname">
+    <input matInput formControlName="surname" (keypress)="onlyText($event)">
+    <mat-error *ngIf="userForm.get('name')?.hasError('required')">
+      Name is required
+    </mat-error>
+
+    <mat-error *ngIf="userForm.get('name')?.hasError('pattern')">
+      Only letters allowed
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill" class="large-field">
     <mat-label>Phone Number</mat-label>
-    <input matInput formControlName="phoneNumber">
+    <input matInput formControlName="phoneNumber" maxlength="10" (keypress)="onlyNumbers($event)">
+
+    <mat-error *ngIf="userForm.get('phoneNumber')?.hasError('pattern')">
+      Phone number must start with 0
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill" class="large-field">
     <mat-label>Email Address</mat-label>
     <input matInput formControlName="email">
+    <mat-error *ngIf="userForm.get('email')?.hasError('email')">
+      Enter a valid email
+    </mat-error>
   </mat-form-field>
 
   <button mat-raised-button type="submit" [disabled]="!userForm.valid">
