@@ -1,50 +1,134 @@
 /* PAGE BACKGROUND */
 .container {
-  background: linear-gradient(to bottom, #f4f8fb, #ffffff);
+  background: linear-gradient(to bottom, #0a0a2e, #1a1a4e);
   min-height: 100vh;
-  padding-top: 60px; /* pushes everything down */
+  padding: 40px 20px;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-/* HEADER (top-left) */
-.header {
+/* BACK BUTTON */
+.back {
   width: 80%;
   margin: 0 auto 20px auto;
 }
 
+.back-btn {
+  background: transparent;
+  border: 1px solid rgba(0, 212, 255, 0.4);
+  color: #00d4ff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  background: rgba(0, 212, 255, 0.1);
+}
+
+/* HEADER */
+.header {
+  width: 80%;
+  margin: 0 auto 24px auto;
+  text-align: center;
+}
+
 .header h2 {
-  color: #0056b3; /* Sanlam blue */
-  font-size: 22px;
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.speed {
+  color: #00d4ff;
+  font-size: 18px;
   font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.price {
+  color: #00ff99;
+  font-size: 24px;
+  font-weight: 700;
 }
 
 /* CARD */
 .card {
   width: 80%;
   margin: 0 auto;
-  padding: 15px;
   border-radius: 20px;
-  background: white;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background: linear-gradient(145deg, #1e2a4a, #162040);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
 }
 
-/* BUTTON */
+/* IMAGE */
+.package-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+/* CARD BODY */
+.card-body {
+  padding: 30px;
+}
+
+.card-body h3 {
+  color: #00d4ff;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.card-body h3:first-child {
+  margin-top: 0;
+}
+
+.description {
+  color: #a0b4c8;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* FEATURES LIST */
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.features li {
+  color: #ffffff;
+  font-size: 15px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* APPLY BUTTON */
 .actions {
   text-align: center;
-  margin-top: 25px;
+  margin-top: 30px;
 }
 
-button {
-  padding: 12px 25px;
+.apply-btn {
+  padding: 16px 36px;
   border: none;
-  border-radius: 8px;
-  background: #007bff;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #00d4ff, #0077ff);
   color: white;
-  font-size: 15px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
 }
 
-button:hover {
-  background: #0056b3;
-  transform: scale(1.05);
+.apply-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 212, 255, 0.5);
 }

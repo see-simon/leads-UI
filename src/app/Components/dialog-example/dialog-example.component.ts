@@ -1,48 +1,74 @@
-import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { LeadsService } from '../services/leads.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-dialog-example',
   templateUrl: './dialog-example.component.html',
-  styleUrls: ['./dialog-example.component.css']
+  styleUrls: ['./dialog-example.component.css'],
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    NgIf
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DialogExampleComponent {
   userForm: FormGroup;
+  isSubmitting = false;
+  isSuccess = false;
 
-  constructor(private fb: FormBuilder, private leadsService: LeadsService, private dialogRef: MatDialogRef<DialogExampleComponent>,
-    @Inject(MAT_DIALOG_DATA) public stateData: any ,   private router: Router, // ✅ ADD THIS
+  constructor(
+    private fb: FormBuilder,
+    private leadsService: LeadsService,
+    protected dialogRef: MatDialogRef<DialogExampleComponent>,
+    @Inject(MAT_DIALOG_DATA) public stateData: any,
+    private router: Router
   ) {
-
     this.userForm = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', Validators.required],
-      
-     description: [`${this.stateData.title}`, Validators.required]
+      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      description: [`I am interested in: ${this.stateData.title} - ${this.stateData.price}`, Validators.required]
     });
   }
 
-
-onSubmit() {
-  if (this.userForm.valid) {
-
-    this.leadsService.addLeads(this.userForm.value).subscribe(response => {
-      console.log('Lead added successfully', response);
-
-      // ✅ Close dialog first
-      this.dialogRef.close();
-      alert('Thank you! A consultant will contact you shortly.');
-      // ✅ Then navigate to landing page
-      this.router.navigate(['/landing-page']);
-
-    }, error => {
-      console.error('Error adding lead', error);
-    });
-
+  getErrorMessage(field: string): string {
+    const control = this.userForm.get(field);
+    if (control?.hasError('required')) return `${field} is required`;
+    if (control?.hasError('email')) return 'Please enter a valid email address';
+    if (control?.hasError('pattern')) return 'Please enter a valid 10 digit phone number';
+    return '';
   }
-}
+
+  onSubmit() {
+    if (this.userForm.valid) {
+      this.isSubmitting = true;
+      this.leadsService.addLeads(this.userForm.value).subscribe({
+        next: (response) => {
+          console.log('Lead added successfully', response);
+          this.isSubmitting = false;
+          this.isSuccess = true;
+          setTimeout(() => {
+            this.dialogRef.close();
+            this.router.navigate(['/']);
+          }, 2000);
+        },
+        error: (error) => {
+          console.error('Error adding lead', error);
+          this.isSubmitting = false;
+        }
+      });
+    }
+  }
 }

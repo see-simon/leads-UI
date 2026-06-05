@@ -1,31 +1,58 @@
-<div class="dialog-title">
-  Get in touch with a consultant
+<div class="dialog-container">
+
+  <!-- TITLE -->
+  <div class="dialog-title">
+    <h2>Apply for {{ stateData.title }}</h2>
+    <p class="subtitle">Fill in your details and a consultant will contact you shortly.</p>
+  </div>
+
+  <!-- SUCCESS MESSAGE -->
+  <div class="success-message" *ngIf="isSuccess">
+    ✅ Thank you! A consultant will contact you shortly.
+  </div>
+
+  <!-- FORM -->
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" *ngIf="!isSuccess">
+
+    <mat-form-field appearance="outline" class="full-field">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" placeholder="e.g. John">
+      <mat-error>{{ getErrorMessage('name') }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-field">
+      <mat-label>Surname</mat-label>
+      <input matInput formControlName="surname" placeholder="e.g. Doe">
+      <mat-error>{{ getErrorMessage('surname') }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-field">
+      <mat-label>Phone Number</mat-label>
+      <input matInput formControlName="phoneNumber" placeholder="e.g. 0821234567">
+      <mat-error>{{ getErrorMessage('phoneNumber') }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-field">
+      <mat-label>Email Address</mat-label>
+      <input matInput formControlName="email" placeholder="e.g. john@email.com">
+      <mat-error>{{ getErrorMessage('email') }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-field">
+      <mat-label>Package Interest</mat-label>
+      <input matInput formControlName="description" readonly>
+    </mat-form-field>
+
+    <!-- BUTTONS -->
+    <div class="actions">
+      <button mat-stroked-button type="button" (click)="dialogRef.close()">
+        Cancel
+      </button>
+      <button mat-raised-button type="submit" [disabled]="!userForm.valid || isSubmitting">
+        {{ isSubmitting ? 'Submitting...' : 'Apply Now' }}
+      </button>
+    </div>
+
+  </form>
+
 </div>
-
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-
-  <mat-form-field appearance="fill" class="large-field">
-    <mat-label>Name</mat-label>
-    <input matInput formControlName="name">
-  </mat-form-field>
-
-  <mat-form-field appearance="fill" class="large-field">
-    <mat-label>Surname</mat-label>
-    <input matInput formControlName="surname">
-  </mat-form-field>
-
-  <mat-form-field appearance="fill" class="large-field">
-    <mat-label>Phone Number</mat-label>
-    <input matInput formControlName="phoneNumber">
-  </mat-form-field>
-
-  <mat-form-field appearance="fill" class="large-field">
-    <mat-label>Email Address</mat-label>
-    <input matInput formControlName="email">
-  </mat-form-field>
-
-  <button mat-raised-button type="submit" [disabled]="!userForm.valid">
-    Submit
-  </button>
-
-</form>

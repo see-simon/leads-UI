@@ -1,26 +1,40 @@
-<div class="container">
+<div class="container" *ngIf="item">
+
+  <!-- BACK BUTTON -->
+  <div class="back">
+    <button class="back-btn" (click)="goBack()">← Back to Packages</button>
+  </div>
 
   <!-- HEADER -->
   <div class="header">
-    <h2>{{ fileName }}</h2>
+    <h2>{{ item.title }}</h2>
+    <p class="speed">{{ item.speed }}</p>
+    <p class="price">{{ item.price }}</p>
   </div>
 
-  <!-- PDF CARD -->
-  <div class="card" *ngIf="fileUrl">
-    <iframe 
-      [src]="fileUrl | safeUrl"
-      width="100%" 
-      height="500px">
-    </iframe>
+  <!-- DETAILS CARD -->
+  <div class="card">
+
+    <img [src]="item.image" [alt]="item.title" class="package-image" />
+
+    <div class="card-body">
+
+      <h3>About this package</h3>
+      <p class="description">{{ item.description }}</p>
+
+      <h3>What's included</h3>
+      <ul class="features">
+        <li *ngFor="let feature of item.features">✅ {{ feature }}</li>
+      </ul>
+
+    </div>
   </div>
 
-  <div *ngIf="!fileUrl">
-    <p>Loading document...</p>
-  </div>
-
-  <!-- BUTTON -->
+  <!-- APPLY BUTTON -->
   <div class="actions">
-    <button (click)="openDialog()">Get in touch with consultant</button>
+    <button class="apply-btn" (click)="openDialog()">
+      Apply Now — Get in Touch with a Consultant
+    </button>
   </div>
 
 </div>

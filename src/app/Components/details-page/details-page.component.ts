@@ -1,40 +1,40 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogExampleComponent } from '../dialog-example/dialog-example.component';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-details-page',
   templateUrl: './details-page.component.html',
-  styleUrls: ['./details-page.component.css']
+  styleUrls: ['./details-page.component.css'],
+  standalone: true,
+  imports: [NgIf, NgFor],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DetailsPageComponent {
 
-  constructor(private route: ActivatedRoute, private router: Router, public dialog: MatDialog) { }
+  item: any = null;
 
-  fileUrl: string = '';
-  fileName: string = '';
+  constructor(private router: Router, public dialog: MatDialog) {}
 
-ngOnInit() {
-  const data = history.state;
-
-  if (data && data.file) {
-    this.fileUrl = 'assets/files/' + data.file;
-    this.fileName = data.title; 
-  } else {
-    console.error("No file data found in history.state");
+  ngOnInit() {
+    const data = history.state;
+    if (data && data.title) {
+      this.item = data;
+    } else {
+      this.router.navigate(['/']);
+    }
   }
-}
 
   openDialog() {
-    const data = history.state;
-    console.log("Opening dialog with data:", data.title);
     this.dialog.open(DialogExampleComponent, {
-      data: data
+      data: this.item,
+      width: '500px'
     });
   }
 
-  goToForm() {
-    this.router.navigate(['/dialog-example']);
+  goBack() {
+    this.router.navigate(['/']);
   }
 }
