@@ -61,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "leads-frondend:build:production"
+              "buildTarget": "leads-frondend:build:production"
             },
             "development": {
-              "browserTarget": "leads-frondend:build:development"
+              "buildTarget": "leads-frondend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +72,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "leads-frondend:build"
+            "buildTarget": "leads-frondend:build"
           }
         },
         "test": {
