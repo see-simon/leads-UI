@@ -48,9 +48,9 @@
       <button mat-stroked-button type="button" (click)="dialogRef.close()">
         Cancel
       </button>
-      <button mat-raised-button type="submit" [disabled]="!userForm.valid || isSubmitting">
-        {{ isSubmitting ? 'Submitting...' : 'Apply Now' }}
-      </button>
+<button mat-raised-button type="submit" [disabled]="!userForm.valid || isSubmitting">
+  {{ isSubmitting ? 'Please wait, connecting...' : 'Apply Now' }}
+</button>
     </div>
 
   </form>
