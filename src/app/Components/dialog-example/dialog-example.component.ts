@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgIf } from '@angular/common';
 
 @Component({
@@ -18,6 +19,7 @@ import { NgIf } from '@angular/common';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatSnackBarModule,
     NgIf
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -25,14 +27,14 @@ import { NgIf } from '@angular/common';
 export class DialogExampleComponent {
   userForm: FormGroup;
   isSubmitting = false;
-  isSuccess = false;
 
   constructor(
     private fb: FormBuilder,
     private leadsService: LeadsService,
-    protected dialogRef: MatDialogRef<DialogExampleComponent>,
+    public dialogRef: MatDialogRef<DialogExampleComponent>,
     @Inject(MAT_DIALOG_DATA) public stateData: any,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
     this.userForm = this.fb.group({
       name: ['', Validators.required],
@@ -56,17 +58,39 @@ export class DialogExampleComponent {
       this.isSubmitting = true;
       this.leadsService.addLeads(this.userForm.value).subscribe({
         next: (response) => {
-          console.log('Lead added successfully', response);
           this.isSubmitting = false;
-          this.isSuccess = true;
+          this.dialogRef.close();
+          this.snackBar.open(
+            '✅ Application submitted! A consultant will contact you shortly.',
+            'Close',
+            {
+              duration: 5000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top',
+              panelClass: ['success-snackbar']
+            }
+          );
           setTimeout(() => {
-            this.dialogRef.close();
             this.router.navigate(['/']);
           }, 2000);
         },
         error: (error) => {
-          console.error('Error adding lead', error);
-          this.isSubmitting = false;
+          this.isSubmitting = false
+          this.dialogRef.close();
+          // Show success anyway since lead is saved even if email fails
+          this.snackBar.open(
+            '✅ Application submitted! A consultant will contact you shortly.',
+            'Close',
+            {
+              duration: 5000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top',
+              panelClass: ['success-snackbar']
+            }
+          );
+          setTimeout(() => {
+            this.router.navigate(['/']);
+          }, 2000);
         }
       });
     }

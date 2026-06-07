@@ -97,3 +97,14 @@ form {
   background: rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.3);
 }
+
+.success-snackbar {
+  background: linear-gradient(135deg, #00d4ff, #0077ff) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  border-radius: 10px !important;
+}
+
+.success-snackbar .mat-mdc-snack-bar-action {
+  color: white !important;
+}

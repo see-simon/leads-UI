@@ -6,13 +6,8 @@
     <p class="subtitle">Fill in your details and a consultant will contact you shortly.</p>
   </div>
 
-  <!-- SUCCESS MESSAGE -->
-  <div class="success-message" *ngIf="isSuccess">
-    ✅ Thank you! A consultant will contact you shortly.
-  </div>
-
   <!-- FORM -->
-  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" *ngIf="!isSuccess">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
 
     <mat-form-field appearance="outline" class="full-field">
       <mat-label>Name</mat-label>
