@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LeadsService {
-  private baseUrl = 'https://leads-ui-git-backup-before-host2-sea6580gmailcoms-projects.vercel.app/api/leads';
+  private baseUrl = 'https://asp-net-core-v-8-leads-1.onrender.com/api/leads';
 
   constructor(private http: HttpClient) {}
 
